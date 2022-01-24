@@ -1,0 +1,47 @@
+version: '3.7'
+
+networks:
+    api:
+
+services:
+    database:
+        image: postgres:latest
+        container_name: pgsql
+        restart: unless-stopped
+        hostname: database
+        tty: true
+        ports:
+            - "5432:5432"
+        volumes:
+            - ./pgdata:/var/lib/postgresql/data/
+        environment:
+            POSTGRES_USER: paco
+            POSTGRES_PASSWORD: Test5910
+            POSTGRES_DB: micro
+            POSTGRES_HOSTNAME: database
+
+        networks:
+            - api
+
+
+    webapi:
+        build: ./MovieRater
+        command: python manage.py runserver 0.0.0.0:8000
+        container_name: webapp
+        volumes:
+            - ./MovieRater:/django
+        ports:
+            - "8000:8000"
+        links:
+            - database
+        environment:
+#            - WAIT_HOSTS=postgres:5432
+#            - WAIT_HOSTS_TIMEOUT=300
+#            - WAIT_SLEEP_INTERVAL=30
+#            - WAIT_HOST_CONNECT_TIMEOUT=30
+            DEBUG: "true"
+            DATABASE_SERVICE_HOST: database
+        depends_on:
+            -   database
+        networks:
+            - api
