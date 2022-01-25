@@ -1,4 +1,4 @@
-version: '3.7'
+version: '3'
 
 networks:
     api:
@@ -14,11 +14,13 @@ services:
             - "5432:5432"
         volumes:
             - ./pgdata:/var/lib/postgresql/data/
+
+
         environment:
             POSTGRES_USER: paco
             POSTGRES_PASSWORD: Test5910
             POSTGRES_DB: micro
-            POSTGRES_HOSTNAME: database
+
 
         networks:
             - api

@@ -88,7 +88,7 @@ DATABASES = {
         'NAME': 'micro',
         'USER': 'paco',
         'PASSWORD': 'Test5910',
-        'HOST': 'database',
+        'HOST': 'pgsql',
         'PORT': '5432',
     }
 }
