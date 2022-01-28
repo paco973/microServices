@@ -4,7 +4,7 @@ ENV LANG C.UTF-8
 #MAINTAINER Yannik Messerli "yannik.messerli@gmail.com"
 
 RUN mkdir /django
-RUN mkdir ../pgdata
+# RUN mkdir ../pgdata
 RUN apt-get -y update
 RUN apt-get install -y python3 python3-pip python3-dev python3-psycopg2 postgresql-client
 RUN python -m pip install --upgrade pip
@@ -15,6 +15,6 @@ RUN pip install -r /django/requirements.txt
 RUN apt-get -y update && apt-get -y autoremove
 WORKDIR /django
 
-EXPOSE 8000
+EXPOSE 4242
 
-CMD gunicorn -b :8000 django.wsgi
+CMD gunicorn -b :4242  django.wsgi
