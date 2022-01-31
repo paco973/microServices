@@ -26,10 +26,10 @@ services:
      #       - api
 
 
-    webapi:
+    webapietna:
         build: ./MovieRater
         command: python manage.py runserver 0.0.0.0:4242
-        container_name: webapp
+        container_name: webAppEtna
         volumes:
             - ./MovieRater:/django
         ports:
